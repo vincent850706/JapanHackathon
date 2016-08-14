@@ -1,15 +1,16 @@
 var SerialPort = require('serialport');
 var mqtt = require('mqtt');
 var dateFormat = require('dateformat');
+var conMqtt = require('./conMqtt.json');
 
 var port = new SerialPort.SerialPort('/dev/ttyS0',{
         baudRate : 57600,
         parser : SerialPort.parsers.readline('\n')
 });
-var server = mqtt.connect('mqtt://test.mosquitto.org');
+var server = mqtt.connect(conMqtt.Broker);
 
 server.on('connect',function(){
-        server.subscribe('/RFID/v1/NUTC');
+        server.subscribe(conMqtt.topic);
 });
 
 port.on('open',function(){
@@ -19,6 +20,6 @@ port.on('open',function(){
                 var mes = data.split('\r');
                 var day = dateFormat('yyyy-mm-dd h:mm:ss');
                 var card = { 'rfid' : mes[0] , 'time' : day};
-                server.publish('/RFID/v1/NUTC',JSON.stringify(card));
+                server.publish(conMqtt.topic,JSON.stringify(card));
         });
 });

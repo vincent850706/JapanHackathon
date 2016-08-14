@@ -20,8 +20,10 @@ void setup(void) {
   }
   
   // Got ok data, print it out!
-  Serial.print("Found chip PN5"); Serial.println((versiondata>>24) & 0xFF, HEX); 
-  Serial.print("Firmware ver. "); Serial.print((versiondata>>16) & 0xFF, DEC); 
+  Serial.print("Found chip PN5"); 
+  Serial.println((versiondata>>24) & 0xFF, HEX); 
+  Serial.print("Firmware ver. "); 
+  Serial.print((versiondata>>16) & 0xFF, DEC); 
   Serial.print('.'); Serial.println((versiondata>>8) & 0xFF, DEC);
   
   nfc.setPassiveActivationRetries(0xFF);
@@ -41,7 +43,9 @@ void loop(void) {
   
   if (success) {
     Serial.println("Found a card!");
-    Serial.print("UID Length: ");Serial.print(uidLength, DEC);Serial.println(" bytes");
+    Serial.print("UID Length: ");
+    Serial.print(uidLength, DEC);
+    Serial.println(" bytes");
     Serial.print("UID Value: ");
     for (uint8_t i=0; i < uidLength; i++) 
     {
