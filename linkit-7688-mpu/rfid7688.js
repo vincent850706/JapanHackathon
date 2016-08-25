@@ -7,7 +7,7 @@ var port = new SerialPort.SerialPort('/dev/ttyS0',{
         baudRate : 57600,
         parser : SerialPort.parsers.readline('\n')
 });
-var server = mqtt.connect(conMqtt.Broker);
+var server = mqtt.connect(conMqtt.broker);
 
 server.on('connect',function(){
         server.subscribe(conMqtt.topic);

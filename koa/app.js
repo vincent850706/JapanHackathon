@@ -10,7 +10,7 @@ var conMongodb = require('./connection/con-mongodb.json');
 
 var app = koa();
 var router = new Router();
-var mqttBroker = mqtt.connect(conMqtt.Broker);
+var mqttBroker = mqtt.connect(conMqtt.broker);
 
 
 
